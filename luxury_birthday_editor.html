@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luxury Birthday</title>
+<meta name="description" content="Luxury birthday website">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+:root{--pink:#ff5c9a;--pink2:#ff9fc2;--gold:#d8b06a;--bg:#090709;--card:#151015;--text:#fff7fb;--muted:#cbbdc5}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 50% 0%,#351321 0,#120b11 32%,#090709 75%);color:var(--text);font-family:Montserrat,sans-serif;min-height:100vh}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 0 47%,rgba(255,255,255,.025) 50%,transparent 53%);opacity:.8}
+nav{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:18px 7%;background:rgba(9,7,9,.72);backdrop-filter:blur(16px);border-bottom:1px solid rgba(216,176,106,.18)}
+.brand{font-family:"Cormorant Garamond";font-size:28px;color:#fff}.brand span{color:var(--pink)}
+nav a{color:var(--muted);text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;margin-left:20px}
+.hero{min-height:78vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:80px 20px;position:relative;overflow:hidden}
+.glow{position:absolute;width:480px;height:480px;border-radius:50%;background:rgba(255,92,154,.13);filter:blur(90px)}
+.hero-content{position:relative;max-width:900px}.eyebrow{font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--gold)}
+h1{font-family:"Cormorant Garamond";font-size:clamp(64px,11vw,145px);line-height:.82;margin:24px 0;color:#fff}
+h1 span{color:var(--pink);font-style:italic}.subtitle{color:var(--muted);max-width:620px;margin:auto;line-height:1.8;font-size:14px}
+.btn{border:1px solid rgba(216,176,106,.7);background:linear-gradient(135deg,#ff5c9a,#d94b86);color:white;padding:13px 22px;border-radius:999px;cursor:pointer;font-weight:600;letter-spacing:1px;margin-top:25px;box-shadow:0 12px 35px rgba(255,92,154,.18)}
+section{padding:75px 7%}.section-title{font-family:"Cormorant Garamond";font-size:50px;text-align:center;margin:0 0 40px}.section-title span{color:var(--pink)}
+.message{max-width:850px;margin:auto;text-align:center;color:#e9dfe5;line-height:2;font-size:16px}
+.photo-wrap{max-width:700px;margin:0 auto}.photo-frame{padding:10px;border:1px solid rgba(216,176,106,.65);background:linear-gradient(135deg,rgba(216,176,106,.18),rgba(255,92,154,.08));box-shadow:0 30px 90px rgba(0,0,0,.55)}
+.photo-frame img{width:100%;display:block;max-height:650px;object-fit:cover;background:#191017;min-height:320px}.photo-empty{min-height:320px;display:grid;place-items:center;text-align:center;color:#b9aab2;padding:40px;background:linear-gradient(135deg,#191017,#25111d);font-family:"Cormorant Garamond";font-size:30px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1000px;margin:auto}.card{background:rgba(21,16,21,.8);border:1px solid rgba(255,255,255,.08);padding:30px;border-radius:22px}.card b{color:var(--pink);font-size:13px;letter-spacing:2px;text-transform:uppercase}.card p{color:var(--muted);line-height:1.7}
+.surprise{text-align:center}.hidden-message{display:none;max-width:650px;margin:30px auto 0;padding:30px;border:1px solid rgba(255,92,154,.35);border-radius:22px;background:rgba(255,92,154,.06);font-family:"Cormorant Garamond";font-size:31px;line-height:1.35}.hidden-message.show{display:block}
+.music{text-align:center}.music audio{width:min(600px,100%)}
+footer{text-align:center;padding:40px 20px;color:#887983;font-size:11px;letter-spacing:2px}
+#editor{display:none;background:#0f0b0f;border-top:1px solid rgba(216,176,106,.25);padding:40px 7%}.editor-box{max-width:950px;margin:auto;background:#171117;border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:25px}.editor-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}label{font-size:11px;color:#cdbfc7;letter-spacing:1px;text-transform:uppercase}input,textarea{width:100%;margin-top:7px;padding:12px;background:#0b080b;border:1px solid #3b2c35;color:white;border-radius:10px;font:inherit}textarea{min-height:130px;resize:vertical}.full{grid-column:1/-1}.editor-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.editor-note{font-size:12px;color:#998991;line-height:1.7;margin-top:15px}
+.qrbox{display:none;position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.82);backdrop-filter:blur(12px);align-items:center;justify-content:center;padding:20px}.qrbox.show{display:flex}.qr-card{background:#fff;color:#111;padding:25px;border-radius:20px;text-align:center;max-width:360px;width:100%}.qr-card canvas{max-width:100%;height:auto}.qr-card button{margin:8px;padding:10px 16px;border-radius:999px;border:0;cursor:pointer}.close{background:#ddd}.download{background:#111;color:#fff}
+@media(max-width:750px){.cards,.editor-grid{grid-template-columns:1fr}.full{grid-column:auto}nav{padding:15px 5%}nav a{margin-left:10px;font-size:9px}section{padding:55px 5%}.hero{min-height:70vh}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="brand">for <span>you</span> ♡</div>
+  <div><a href="#message">message</a><a href="#memory">memory</a><a href="#surprise">surprise</a><a href="#tools">tools</a></div>
+</nav>
+
+<header class="hero">
+  <div class="glow"></div>
+  <div class="hero-content">
+    <div class="eyebrow">a little luxury birthday gift</div>
+    <h1>Happy Birthday<br><span id="heroName">Beautiful.</span></h1>
+    <p class="subtitle" id="heroSubtitle">A special little corner of the internet, made just for you.</p>
+    <button class="btn" onclick="document.querySelector('#message').scrollIntoView()">Open your gift ♡</button>
+  </div>
+</header>
+
+<section id="message">
+  <h2 class="section-title">A message <span>for you</span></h2>
+  <p class="message" id="messageText">Happy birthday, my favorite person. May this new chapter bring you beautiful moments, peaceful days, big dreams, and everything your heart has been waiting for. Thank you for being someone worth celebrating.</p>
+</section>
+
+<section id="memory">
+  <h2 class="section-title">Our <span>favorite memory</span></h2>
+  <div class="photo-wrap">
+    <div class="photo-frame">
+      <div id="photoArea" class="photo-empty">Add your favorite photo here ♡</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">Three little <span>wishes</span></h2>
+  <div class="cards">
+    <div class="card"><b>01 · Happiness</b><p>Semoga hari-harimu selalu punya alasan kecil untuk tersenyum.</p></div>
+    <div class="card"><b>02 · Love</b><p>Semoga kamu selalu dikelilingi orang-orang yang tulus dan menyayangimu.</p></div>
+    <div class="card"><b>03 · Dreams</b><p>Semoga semua impian yang kamu simpan pelan-pelan menjadi nyata.</p></div>
+  </div>
+</section>
+
+<section id="surprise" class="surprise">
+  <h2 class="section-title">One more <span>thing...</span></h2>
+  <button class="btn" onclick="document.getElementById('secret').classList.toggle('show')">Click for a surprise ♡</button>
+  <div id="secret" class="hidden-message">No matter how many candles are on the cake, I hope you always remember how special you are. Happy birthday. ♡</div>
+</section>
+
+<section id="music" class="music">
+  <h2 class="section-title">Your <span>song</span></h2>
+  <audio id="audio" controls></audio>
+  <p class="editor-note">Tambahkan musik melalui menu EDIT di bawah. File musik akan tersimpan di browser saat ini.</p>
+</section>
+
+<section id="tools">
+  <h2 class="section-title">Owner <span>tools</span></h2>
+  <div style="text-align:center">
+    <button class="btn" onclick="openEditor()">✦ EDIT WEBSITE</button>
+    <button class="btn" onclick="makeQR()">▣ DOWNLOAD QR</button>
+  </div>
+  <p class="editor-note" style="max-width:750px;margin:18px auto;text-align:center">
+    Editor ini bekerja langsung di browser. Untuk perubahan yang ingin dilihat semua orang melalui QR, gunakan tombol <b>Download Updated HTML</b>, lalu upload file hasilnya sebagai <b>index.html</b> ke GitHub Pages.
+  </p>
+</section>
+
+<div id="editor">
+  <div class="editor-box">
+    <h2 style="font-family:'Cormorant Garamond';font-size:40px;margin-top:0">Edit your website</h2>
+    <div class="editor-grid">
+      <div><label>Nama / sapaan</label><input id="eName"></div>
+      <div><label>Subtitle</label><input id="eSubtitle"></div>
+      <div class="full"><label>Pesan ulang tahun</label><textarea id="eMessage"></textarea></div>
+      <div class="full"><label>Pesan kejutan</label><textarea id="eSecret"></textarea></div>
+      <div><label>Foto</label><input id="ePhoto" type="file" accept="image/*"></div>
+      <div><label>Musik</label><input id="eMusic" type="file" accept="audio/*"></div>
+    </div>
+    <div class="editor-actions">
+      <button class="btn" onclick="applyEdits()">Simpan di browser</button>
+      <button class="btn" onclick="downloadUpdatedHTML()">Download Updated HTML</button>
+      <button class="btn" onclick="closeEditor()">Tutup</button>
+    </div>
+    <div class="editor-note">
+      <b>Penting:</b> GitHub Pages adalah website statis. Karena itu browser tidak boleh menulis langsung ke file GitHub.
+      Tombol <b>Download Updated HTML</b> membuat versi terbaru yang bisa kamu upload ke GitHub sebagai index.html.
+      Jangan masukkan password, token GitHub, atau data pribadi ke dalam file website.
+    </div>
+  </div>
+</div>
+
+<div id="qrbox" class="qrbox">
+  <div class="qr-card">
+    <h2 style="font-family:'Cormorant Garamond';font-size:34px;margin:0 0 12px">Scan me ♡</h2>
+    <canvas id="qrCanvas"></canvas>
+    <p id="qrUrl" style="font-size:11px;word-break:break-all;color:#666"></p>
+    <button class="download" onclick="downloadQR()">Download QR PNG</button>
+    <button class="close" onclick="document.getElementById('qrbox').classList.remove('show')">Close</button>
+  </div>
+</div>
+
+<footer>made with love · luxury birthday</footer>
+
+<script>
+let photoData="", musicData="";
+const $=id=>document.getElementById(id);
+function openEditor(){
+  $('editor').style.display='block';
+  $('eName').value=$('heroName').textContent.replace(/\.$/,'');
+  $('eSubtitle').value=$('heroSubtitle').textContent;
+  $('eMessage').value=$('messageText').textContent;
+  $('eSecret').value=$('secret').textContent;
+  $('editor').scrollIntoView({behavior:'smooth'});
+}
+function closeEditor(){ $('editor').style.display='none'; }
+function applyEdits(){
+  $('heroName').textContent=$('eName').value || 'Beautiful.';
+  $('heroSubtitle').textContent=$('eSubtitle').value;
+  $('messageText').textContent=$('eMessage').value;
+  $('secret').textContent=$('eSecret').value;
+  if(photoData){$('photoArea').innerHTML='<img src="'+photoData+'" alt="Birthday memory">';}
+  if(musicData){$('audio').src=musicData;}
+  localStorage.setItem('birthdayEditorData',JSON.stringify({
+    name:$('heroName').textContent,subtitle:$('heroSubtitle').textContent,message:$('messageText').textContent,secret:$('secret').textContent,photo:photoData,music:musicData
+  }));
+}
+$('ePhoto').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>photoData=r.result;r.readAsDataURL(f);});
+$('eMusic').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>musicData=r.result;r.readAsDataURL(f);});
+function loadSaved(){
+  try{const d=JSON.parse(localStorage.getItem('birthdayEditorData')||'null');if(!d)return;
+    $('heroName').textContent=d.name||'Beautiful.';$('heroSubtitle').textContent=d.subtitle||'';
+    $('messageText').textContent=d.message||'';$('secret').textContent=d.secret||'';
+    photoData=d.photo||'';musicData=d.music||'';
+    if(photoData)$('photoArea').innerHTML='<img src="'+photoData+'" alt="Birthday memory">';
+    if(musicData)$('audio').src=musicData;
+  }catch(e){}
+}
+function escapeHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');}
+async function downloadUpdatedHTML(){
+  applyEdits();
+  const clone=document.documentElement.cloneNode(true);
+  const script=clone.querySelector('script');
+  const style=clone.querySelector('style');
+  const editor=clone.querySelector('#editor'); if(editor) editor.style.display='none';
+  const qr=clone.querySelector('#qrbox'); if(qr) qr.remove();
+  // Keep editor in the downloaded version so the owner can edit again.
+  const html='<!DOCTYPE html>\n'+clone.outerHTML;
+  const blob=new Blob([html],{type:'text/html;charset=utf-8'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='index.html';a.click();URL.revokeObjectURL(a.href);
+}
+function makeQR(){
+  const url=location.href;
+  if(!url || url.startsWith('file:')){alert('QR akan berfungsi setelah website sudah online di GitHub Pages. Buka halaman GitHub Pages ini lalu tekan DOWNLOAD QR.');return;}
+  drawQR(url);$('qrUrl').textContent=url;$('qrbox').classList.add('show');
+}
+function drawQR(text){
+  const c=$('qrCanvas'),ctx=c.getContext('2d'),n=29,cell=8,margin=4;
+  // Lightweight QR-like generator using a remote-free canvas is not sufficient for arbitrary URLs.
+  // Load QRCode library only when needed.
+  const s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';
+  s.onload=()=>{c.style.display='none';let holder=document.createElement('div');holder.id='qrLib';$('qrCanvas').replaceWith(holder);new QRCode(holder,{text, width:260,height:260,correctLevel:QRCode.CorrectLevel.H});};
+  s.onerror=()=>alert('QR library gagal dimuat. Pastikan internet aktif, lalu coba lagi.');
+  document.head.appendChild(s);
+}
+function downloadQR(){
+  const holder=document.getElementById('qrLib');if(!holder){alert('Tunggu QR muncul dulu.');return;}
+  const img=holder.querySelector('img');const canvas=holder.querySelector('canvas');
+  const src=img?img.src:(canvas?canvas.toDataURL('image/png'):null);if(!src)return;
+  const a=document.createElement('a');a.href=src;a.download='QR-Birthday-Website.png';a.click();
+}
+loadSaved();
+</script>
+</body>
+</html>
